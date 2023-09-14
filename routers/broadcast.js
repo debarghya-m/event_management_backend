@@ -3,12 +3,12 @@ const express = require("express");
 const router = express.Router();
 const cors = require("cors");
 //handle shcema
-const Quiz = require("../models/quiz");
+const Broadcast = require("../models/broadcast");
 
 router.get("/", cors(), async (req, res) => {
   try {
-    const quiz = await Quiz.find();
-    res.json(quiz);
+    const broadcasts = await Broadcast.find();
+    res.json(broadcasts);
   } catch (err) {
     res.send("Error: " + err);
   }
@@ -16,26 +16,22 @@ router.get("/", cors(), async (req, res) => {
 
 router.get("/:id", cors(), async (req, res) => {
   try {
-    const quiz = await Quiz.findById(req.params.id);
-    res.json(quiz);
+    const broadcasts = await Broadcast.findById(req.params.id);
+    res.json(broadcasts);
   } catch (err) {
     res.send("Error: " + err);
   }
 });
 
 router.post("/", cors(), async (req, res) => {
-  const quiz = new Quiz({
+  const broadcasts = new Broadcast({
     userId: req.body.userId,
     date_time: req.body.date_time,
-    question: req.body.question,
-    option1: req.body.option1,
-    option2: req.body.option2,
-    option3: req.body.option3,
-    option4: req.body.option4,
-    rightOption: req.body.rightOption,
+    message: req.body.message,
+    img: req.body.img,
   });
   try {
-    const t1 = await quiz.save();
+    const t1 = await broadcasts.save();
     res.json(t1);
   } catch (err) {
     res.send("Error: " + err);
@@ -44,10 +40,14 @@ router.post("/", cors(), async (req, res) => {
 
 router.patch("/:id", cors(), async (req, res) => {
   try {
-    const quiz = await Quiz.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.send(quiz);
+    const broadcasts = await Broadcast.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.send(broadcasts);
   } catch (err) {
     res.send("Error: " + err);
   }
@@ -55,7 +55,7 @@ router.patch("/:id", cors(), async (req, res) => {
 
 router.delete("/:id", cors(), async (req, res) => {
   try {
-    const quiz = await Quiz.deleteOne({ _id: req.params.id });
+    const broadcasts = await Broadcast.deleteOne({ _id: req.params.id });
     res.json({
       message: "deleted",
     });

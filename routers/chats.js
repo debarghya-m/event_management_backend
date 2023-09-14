@@ -30,6 +30,8 @@ router.post("/", cors(), async (req, res) => {
     message: req.body.message,
     roomId: req.body.roomId,
     quizId: req.body.quizId,
+    rightOption: req.body.rightOption,
+    img: req.body.img,
   });
   try {
     const t1 = await chats.save();

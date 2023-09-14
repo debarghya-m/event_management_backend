@@ -17,6 +17,14 @@ const chatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  img: {
+    type: String,
+    required: false,
+  },
+  rightOption: {
+    type: String,
+    required: false,
+  },
   message: {
     type: String,
     required: true,

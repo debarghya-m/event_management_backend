@@ -25,6 +25,10 @@ const quizSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  rightOption: {
+    type: String,
+    required: false,
+  },
   date_time: {
     type: String,
     required: true,
