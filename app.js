@@ -11,7 +11,7 @@ const io = require("socket.io")(http, {
 //start mongoose server
 mongoose.connect(
   process.env.MONGO_URL ||
-    "mongodb+srv://test-db:Diago81169@test-db.hyppdus.mongodb.net/",
+    "mongodb+srv://test-db:@test-db.hyppdus.mongodb.net/",
   { useNewUrlParser: true }
 );
 //check connection with mongoose server
